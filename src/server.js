@@ -7,6 +7,7 @@ import beerRouter from "./api/beerBJCP/index.js";
 import maltRouter from "./api/malts/index.js";
 import hopRouter from "./api/hops/index.js";
 import yeastRouter from "./api/yeasts/index.js";
+import recipeRouter from "./api/recipes/index.js";
 import passport from "passport";
 
 const server = express();
@@ -22,6 +23,7 @@ server.use("/beers", beerRouter);
 server.use("/malts", maltRouter);
 server.use("/hops", hopRouter);
 server.use("/yeasts", yeastRouter);
+server.use("/recipes", recipeRouter);
 
 mongoose.set("strictQuery", false);
 
