@@ -1,0 +1,55 @@
+{
+  "name": "beerbuzz-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config -e js ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Francescostefan1998/beerbuzz-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Francescostefan1998/beerbuzz-backend/issues"
+  },
+  "homepage": "https://github.com/Francescostefan1998/beerbuzz-backend#readme",
+  "dependencies": {
+    "atob": "^2.1.2",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.35.0",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-list-endpoints": "^6.0.0",
+    "express-validators": "^1.0.4",
+    "fast-csv": "^4.3.6",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.0",
+    "http-error": "^0.0.6",
+    "http-errors": "^2.0.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "jsonwebtoken": "^9.0.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.0.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pdfkit": "^0.13.0",
+    "query-to-mongo": "^0.10.2",
+    "require": "^2.4.20",
+    "stream": "^0.0.2",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
