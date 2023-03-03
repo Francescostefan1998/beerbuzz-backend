@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import userRouter from "./api/users/index.js";
 import beerRouter from "./api/beerBJCP/index.js";
+import maltRouter from "./api/malts/index.js";
 import passport from "passport";
 
 const server = express();
@@ -16,6 +17,7 @@ server.use(cors());
 server.use(express.json());
 server.use("/users", userRouter);
 server.use("/beers", beerRouter);
+server.use("/malts", maltRouter);
 
 mongoose.set("strictQuery", false);
 
