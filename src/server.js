@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import userRouter from "./api/users/index.js";
 import beerRouter from "./api/beerBJCP/index.js";
 import maltRouter from "./api/malts/index.js";
+import hopRouter from "./api/hops/index.js";
+import yeastRouter from "./api/yeasts/index.js";
 import passport from "passport";
 
 const server = express();
@@ -18,6 +20,8 @@ server.use(express.json());
 server.use("/users", userRouter);
 server.use("/beers", beerRouter);
 server.use("/malts", maltRouter);
+server.use("/hops", hopRouter);
+server.use("/yeasts", yeastRouter);
 
 mongoose.set("strictQuery", false);
 

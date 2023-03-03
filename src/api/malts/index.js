@@ -27,7 +27,7 @@ maltRouter.get("/:maltId", async (req, res, next) => {
     if (malt) {
       res.send(malt);
     } else {
-      next(createHttpError(404, `User with ID ${req.params.maltId} not found`));
+      next(createHttpError(404, `Malt with ID ${req.params.maltId} not found`));
     }
   } catch (error) {
     next(error);
@@ -43,7 +43,7 @@ maltRouter.put("/:maltId", async (req, res, next) => {
     if (updatedMalt) {
       res.send(updatedMalt);
     } else {
-      next(createHttpError(404, `User with ID ${req.params.maltId} not found`));
+      next(createHttpError(404, `Malt with ID ${req.params.maltId} not found`));
     }
   } catch (error) {
     next(error);
@@ -55,7 +55,7 @@ maltRouter.delete("/:maltId", async (req, res, next) => {
     if (deleteMalt) {
       res.status(204).send();
     } else {
-      next(createHttpError(404, `User with ID ${req.params.maltId} not found`));
+      next(createHttpError(404, `Malt with ID ${req.params.maltId} not found`));
     }
   } catch (error) {
     next(error);
