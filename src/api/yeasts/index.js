@@ -15,7 +15,22 @@ yeastRouter.post("/", async (req, res, next) => {
 });
 yeastRouter.get("/", async (req, res, next) => {
   try {
-    const yeasts = await YeastModel.find();
+    // Define query parameters for searching by name and techName
+    const { name, techName } = req.query;
+
+    // Create a query object to filter the yeasts
+    const query = {};
+    if (name) {
+      // Use regular expression to match any occurrence of the search string in the name
+      query.name = new RegExp(name, "i");
+    }
+    if (techName) {
+      query.techName = new RegExp(techName, "i");
+    }
+
+    // Find the yeasts that match the query and sort them alphabetically by name
+    const yeasts = await YeastModel.find(query).sort({ name: 1 });
+
     res.send(yeasts);
   } catch (error) {
     next(error);

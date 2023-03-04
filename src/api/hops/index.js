@@ -15,7 +15,19 @@ hopRouter.post("/", async (req, res, next) => {
 });
 hopRouter.get("/", async (req, res, next) => {
   try {
-    const hops = await HopModel.find();
+    // Define query parameter for searching by name
+    const { name } = req.query;
+
+    // Create a query object to filter the hops
+    const query = {};
+    if (name) {
+      // Use regular expression to match any occurrence of the search string in the name
+      query.name = new RegExp(name, "i");
+    }
+
+    // Find the hops that match the query and sort them alphabetically by name
+    const hops = await HopModel.find(query).sort({ name: 1 });
+
     res.send(hops);
   } catch (error) {
     next(error);

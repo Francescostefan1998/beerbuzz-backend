@@ -15,7 +15,25 @@ maltRouter.post("/", async (req, res, next) => {
 });
 maltRouter.get("/", async (req, res, next) => {
   try {
-    const malts = await MaltModel.find();
+    // Define query parameters for searching by name, category, and type
+    const { name, category, type } = req.query;
+
+    // Create a query object to filter the malts
+    const query = {};
+    if (name) {
+      // Use regular expression to match any occurrence of the search string in the name
+      query.name = new RegExp(name, "i");
+    }
+    if (category) {
+      query.category = new RegExp(category, "i");
+    }
+    if (type) {
+      query.type = new RegExp(type, "i");
+    }
+
+    // Find the malts that match the query and sort them alphabetically by name
+    const malts = await MaltModel.find(query).sort({ name: 1 });
+
     res.send(malts);
   } catch (error) {
     next(error);
