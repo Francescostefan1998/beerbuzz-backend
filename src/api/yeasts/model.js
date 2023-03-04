@@ -12,7 +12,7 @@ const yeastSchema = new Schema(
     form: { type: String, required: true },
     maxAbv: { type: Number, required: true },
     flocculation: { type: String, required: true },
-    temperature: [{ type: Number }],
+    temperature: { type: String, required: true },
   },
   {
     timestamps: true,
