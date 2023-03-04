@@ -6,6 +6,7 @@ const recipeSchema = new Schema(
     name: { type: String, required: true },
     image: { type: String, required: false },
     author: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
     style: { type: String, required: true },
     batchVolume: { type: Number, required: true },
     abv: { type: Number, required: true },
@@ -63,7 +64,7 @@ const recipeSchema = new Schema(
         duration: { type: String, required: true },
       },
     ],
-    comments: [{ comment: { type: String } }],
+    comments: [{ comment: { type: Schema.Types.ObjectId, ref: "Comment" } }],
   },
   {
     timestamps: true,
