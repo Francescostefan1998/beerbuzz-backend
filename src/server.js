@@ -11,6 +11,11 @@ import recipeRouter from "./api/recipes/index.js";
 import otherRouter from "./api/others/index.js";
 import commentRouter from "./api/comments/index.js";
 import fileRecipeRouter from "./api/recipes/file/index.js";
+import {
+  badRequestErrorHandler,
+  notFoundErrorHandler,
+  genericErrorHandler,
+} from "./errorHandlers.js";
 import passport from "passport";
 
 const server = express();
@@ -31,6 +36,10 @@ server.use("/recipes", fileRecipeRouter);
 
 server.use("/others", otherRouter);
 server.use("/comments", commentRouter);
+
+server.use(badRequestErrorHandler);
+server.use(notFoundErrorHandler);
+server.use(genericErrorHandler);
 
 mongoose.set("strictQuery", false);
 
