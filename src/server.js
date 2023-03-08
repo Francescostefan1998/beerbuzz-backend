@@ -10,6 +10,7 @@ import yeastRouter from "./api/yeasts/index.js";
 import recipeRouter from "./api/recipes/index.js";
 import otherRouter from "./api/others/index.js";
 import commentRouter from "./api/comments/index.js";
+import fileRecipeRouter from "./api/recipes/file/index.js";
 import passport from "passport";
 
 const server = express();
@@ -26,6 +27,8 @@ server.use("/malts", maltRouter);
 server.use("/hops", hopRouter);
 server.use("/yeasts", yeastRouter);
 server.use("/recipes", recipeRouter);
+server.use("/recipes", fileRecipeRouter);
+
 server.use("/others", otherRouter);
 server.use("/comments", commentRouter);
 
