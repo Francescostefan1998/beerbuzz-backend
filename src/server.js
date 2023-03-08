@@ -15,7 +15,9 @@ import {
   badRequestErrorHandler,
   notFoundErrorHandler,
   genericErrorHandler,
+  unauthorizedErrorHandler,
 } from "./errorHandlers.js";
+import googleStrategy from "./lib/auth/google.js";
 import passport from "passport";
 
 const server = express();
@@ -23,6 +25,7 @@ const server = express();
 const port = process.env.PORT || 3001;
 
 const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
+passport.use("google", googleStrategy);
 
 server.use(cors());
 server.use(express.json());
@@ -36,6 +39,7 @@ server.use("/recipes", fileRecipeRouter);
 
 server.use("/others", otherRouter);
 server.use("/comments", commentRouter);
+server.use(unauthorizedErrorHandler);
 
 server.use(badRequestErrorHandler);
 server.use(notFoundErrorHandler);

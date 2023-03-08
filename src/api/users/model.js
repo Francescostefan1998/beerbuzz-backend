@@ -6,9 +6,10 @@ const userSchema = new Schema(
     lastName: { type: String, required: false },
     password: { type: String, required: false },
     email: { type: String, required: true },
-    userName: { type: String, required: false },
     recipes: [{ type: Schema.Types.ObjectId, ref: "Experience" }],
     image: { type: String, required: false },
+    role: { type: String, enum: ["User", "Admin"], default: "User" },
+    googleId: { type: String, required: false },
   },
   { timestamps: true }
 );
