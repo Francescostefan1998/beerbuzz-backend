@@ -7,6 +7,7 @@ const hopSchema = new Schema(
     alpha: { type: Number, required: true },
     type: { type: String, required: true },
     origin: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,

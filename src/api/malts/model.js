@@ -11,6 +11,7 @@ const maltSchema = new Schema(
     origin: { type: String, required: true },
     potential: { type: Number, required: true },
     yield: { type: Number, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,

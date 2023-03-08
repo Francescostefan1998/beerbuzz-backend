@@ -13,6 +13,7 @@ const yeastSchema = new Schema(
     maxAbv: { type: Number, required: true },
     flocculation: { type: String, required: true },
     temperature: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,
