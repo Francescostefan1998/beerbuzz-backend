@@ -11,6 +11,7 @@ import recipeRouter from "./api/recipes/index.js";
 import otherRouter from "./api/others/index.js";
 import commentRouter from "./api/comments/index.js";
 import fileRecipeRouter from "./api/recipes/file/index.js";
+import imageRouter from "./api/momentaryImage/file/index.js";
 import {
   badRequestErrorHandler,
   notFoundErrorHandler,
@@ -36,6 +37,7 @@ server.use("/hops", hopRouter);
 server.use("/yeasts", yeastRouter);
 server.use("/recipes", recipeRouter);
 server.use("/recipes", fileRecipeRouter);
+server.use("/images", imageRouter);
 
 server.use("/others", otherRouter);
 server.use("/comments", commentRouter);
