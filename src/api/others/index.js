@@ -15,7 +15,7 @@ otherRouter.post("/", async (req, res, next) => {
 });
 otherRouter.get("/", async (req, res, next) => {
   try {
-    const others = await OtherModel.find(query).sort({ name: 1 });
+    const others = await OtherModel.find();
 
     res.send(others);
   } catch (error) {
