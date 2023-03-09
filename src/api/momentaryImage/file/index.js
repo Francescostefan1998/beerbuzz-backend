@@ -25,7 +25,7 @@ imageRouter.post("/:userId", cloudUploader, async (req, res, next) => {
         { $push: { image: req.file.path } }, // push new path to the end of the array
         { new: true, runValidators: true }
       );
-      res.send(updatedUser);
+      res.send({ user: updatedUser, imagePath: req.file.path });
     } else {
       next(createHttpError(404, `user with id ${this.user._id} not found`));
     }
