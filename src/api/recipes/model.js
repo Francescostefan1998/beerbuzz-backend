@@ -51,30 +51,30 @@ const recipeSchema = new Schema(
       {
         name: { type: String, required: true },
         description: { type: String, required: true },
-        temperature: { type: String, required: true },
-        duration: { type: String, required: true },
+        temperature: { type: Number, required: true },
+        duration: { type: Number, required: true },
       },
     ],
     boil: [
       {
         name: { type: String, required: true },
         description: { type: String, required: true },
-        temperature: { type: String, required: true },
-        duration: { type: String, required: true },
+        temperature: { type: Number, required: true },
+        duration: { type: Number, required: true },
       },
     ],
     fermentation: [
       {
         name: { type: String, required: true },
         description: { type: String, required: true },
-        temperature: { type: String, required: true },
-        duration: { type: String, required: true },
+        temperature: { type: Number, required: true },
+        duration: { type: Number, required: true },
       },
     ],
     fermentationChart: [
       {
         day: { type: Number, required: true },
-        temperature: { type: String, required: true },
+        temperature: { type: Number, required: true },
       },
     ],
     comments: [{ comment: { type: Schema.Types.ObjectId, ref: "Comment" } }],
