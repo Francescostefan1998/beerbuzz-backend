@@ -22,7 +22,16 @@ recipeRouter.get("/", async (req, res, next) => {
     next(error);
   }
 });
-recipeRouter.get("/:recipeId", async (req, res, next) => {
+recipeRouter.get("/:userId", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const recipes = await RecipeModel.find({ userId: userId });
+    res.send(recipes);
+  } catch (error) {
+    next(error);
+  }
+});
+recipeRouter.get("/:userId/:recipeId", async (req, res, next) => {
   try {
     const recipe = await RecipeModel.findById(req.params.recipeId);
     if (recipe) {
