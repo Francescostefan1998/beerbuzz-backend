@@ -11,6 +11,7 @@ recipeRouter.post("/", async (req, res, next) => {
     res.status(201).send({ _id });
   } catch (error) {
     next(error);
+    console.log(error);
   }
 });
 recipeRouter.get("/", async (req, res, next) => {

@@ -3,9 +3,9 @@ const { Schema, model } = mongoose;
 
 const recipeSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: false },
     image: { type: String, required: false },
-    author: { type: String, required: true },
+    author: { type: String, required: false },
     userId: { type: Schema.Types.ObjectId, ref: "User" },
     style: { type: String },
     batchVolume: { type: Number, required: true },
@@ -43,41 +43,41 @@ const recipeSchema = new Schema(
     ],
     salts: [
       {
-        nameId: { type: Schema.Types.ObjectId, ref: "Salt" },
-        amount: { type: Number, required: true },
+        name: { type: String, required: false },
+        amount: { type: Number, required: false },
       },
     ],
     mash: [
       {
-        name: { type: String, required: true },
-        description: { type: String, required: true },
-        temperature: { type: Number, required: true },
-        duration: { type: Number, required: true },
+        name: { type: String, required: false },
+        description: { type: String, required: false },
+        temperature: { type: Number, required: false },
+        duration: { type: Number, required: false },
       },
     ],
     boil: [
       {
-        name: { type: String, required: true },
-        description: { type: String, required: true },
-        temperature: { type: Number, required: true },
-        duration: { type: Number, required: true },
+        name: { type: String, required: false },
+        description: { type: String, required: false },
+        temperature: { type: Number, required: false },
+        duration: { type: Number, required: false },
       },
     ],
     fermentation: [
       {
-        name: { type: String, required: true },
-        description: { type: String, required: true },
-        temperature: { type: Number, required: true },
-        duration: { type: Number, required: true },
+        name: { type: String, required: false },
+        description: { type: String, required: false },
+        temperature: { type: Number, required: false },
+        duration: { type: Number, required: false },
       },
     ],
     fermentationChart: [
       {
-        day: { type: Number, required: true },
-        temperature: { type: Number, required: true },
+        day: { type: Number, required: false },
+        temperature: { type: Number, required: false },
       },
     ],
-    comments: [{ comment: { type: Schema.Types.ObjectId, ref: "Comment" } }],
+    comments: [],
   },
   {
     timestamps: true,
