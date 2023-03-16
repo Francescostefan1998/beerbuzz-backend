@@ -19,24 +19,31 @@ const recipeSchema = new Schema(
     fg: { type: Number, required: true },
     malts: [
       {
+        name: { type: String, required: true },
         nameId: { type: Schema.Types.ObjectId, ref: "Malt" },
         amount: { type: Number, required: true },
       },
     ],
     hops: [
       {
+        name: { type: String, required: true },
+
         nameId: { type: Schema.Types.ObjectId, ref: "Hop" },
         amount: { type: Number, required: true },
       },
     ],
     yeasts: [
       {
+        name: { type: String, required: true },
+
         nameId: { type: Schema.Types.ObjectId, ref: "Yeast" },
         amount: { type: Number, required: true },
       },
     ],
     others: [
       {
+        name: { type: String, required: true },
+        description: { type: String, required: true },
         nameId: { type: Schema.Types.ObjectId, ref: "Other" },
         amount: { type: Number },
       },
