@@ -21,7 +21,7 @@ const recipeSchema = new Schema(
       {
         name: { type: String, required: true },
         nameId: { type: Schema.Types.ObjectId, ref: "Malt" },
-        amount: { type: Number, required: true },
+        amount: { type: Schema.Types.Mixed, required: true },
       },
     ],
     hops: [
@@ -29,7 +29,7 @@ const recipeSchema = new Schema(
         name: { type: String, required: true },
 
         nameId: { type: Schema.Types.ObjectId, ref: "Hop" },
-        amount: { type: Number, required: true },
+        amount: { type: Schema.Types.Mixed, required: true },
       },
     ],
     yeasts: [
@@ -37,7 +37,7 @@ const recipeSchema = new Schema(
         name: { type: String, required: true },
 
         nameId: { type: Schema.Types.ObjectId, ref: "Yeast" },
-        amount: { type: Number, required: true },
+        amount: { type: Schema.Types.Mixed, required: true },
       },
     ],
     others: [
@@ -45,37 +45,37 @@ const recipeSchema = new Schema(
         name: { type: String, required: true },
         description: { type: String },
         nameId: { type: Schema.Types.ObjectId, ref: "Other" },
-        amount: { type: Number },
+        amount: { type: Schema.Types.Mixed },
       },
     ],
     salts: [
       {
         name: { type: String, required: false },
-        amount: { type: Number, required: false },
+        amount: { type: Schema.Types.Mixed, required: false },
       },
     ],
     mash: [
       {
         name: { type: String, required: false },
         description: { type: String, required: false },
-        temperature: { type: Number, required: false },
-        duration: { type: Number, required: false },
+        temperature: { type: Schema.Types.Mixed, required: false },
+        duration: { type: Schema.Types.Mixed, required: false },
       },
     ],
     boil: [
       {
         name: { type: String, required: false },
         description: { type: String, required: false },
-        temperature: { type: Number, required: false },
-        duration: { type: Number, required: false },
+        temperature: { type: Schema.Types.Mixed, required: false },
+        duration: { type: Schema.Types.Mixed, required: false },
       },
     ],
     fermentation: [
       {
         name: { type: String, required: false },
         description: { type: String, required: false },
-        temperature: { type: Number, required: false },
-        duration: { type: Number, required: false },
+        temperature: { type: Schema.Types.Mixed, required: false },
+        duration: { type: Schema.Types.Mixed, required: false },
       },
     ],
 
