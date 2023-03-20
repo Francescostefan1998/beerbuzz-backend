@@ -43,7 +43,7 @@ const recipeSchema = new Schema(
     others: [
       {
         name: { type: String, required: true },
-        description: { type: String, required: true },
+        description: { type: String },
         nameId: { type: Schema.Types.ObjectId, ref: "Other" },
         amount: { type: Number },
       },
@@ -78,13 +78,9 @@ const recipeSchema = new Schema(
         duration: { type: Number, required: false },
       },
     ],
-    fermentationChart: [
-      {
-        day: { type: Number, required: false },
-        temperature: { type: Number, required: false },
-      },
-    ],
+
     comments: [],
+    chart: [],
   },
   {
     timestamps: true,
