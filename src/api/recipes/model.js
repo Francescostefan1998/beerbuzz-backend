@@ -9,6 +9,8 @@ const recipeSchema = new Schema(
     userId: { type: Schema.Types.ObjectId, ref: "User" },
     style: { type: String },
     batchVolume: { type: Number, required: true },
+    spargeVolume: { type: Number, required: true },
+    efficiency: { type: Number, required: true },
     mashVolume: { type: Number, required: true },
     preBoil: { type: Number, required: true },
     postBoil: { type: Number, required: true },
