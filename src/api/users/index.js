@@ -26,7 +26,7 @@ userRouter.get("/", async (req, res, next) => {
   }
 });
 
-userRouter.get(
+/*userRouter.get(
   "/googleLogin",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
@@ -39,7 +39,7 @@ userRouter.get(
     res.redirect(`${process.env.FE_URL}?accessToken=${req.user.accessToken}`);
   }
 );
-
+*/
 userRouter.get("/me", JWTAuthMiddleware, async (req, res, next) => {
   try {
     const user = await UsersModel.findById(req.user._id);
