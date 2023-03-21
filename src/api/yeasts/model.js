@@ -3,17 +3,18 @@ const { Schema, model } = mongoose;
 
 const yeastSchema = new Schema(
   {
-    name: { type: String, required: true },
-    techName: { type: String, required: true },
-    laboratory: { type: String, required: true },
-    cellsPerGram: { type: Number, required: true },
-    type: { type: String, required: true },
-    attenuation: { type: Number, required: true },
-    form: { type: String, required: true },
-    maxAbv: { type: Number, required: true },
-    flocculation: { type: String, required: true },
-    temperature: { type: String, required: true },
+    name: { type: String, required: false },
+    techName: { type: String, required: false },
+    laboratory: { type: String, required: false },
+    cellsPerGram: { type: Schema.Types.Mixed, required: false },
+    type: { type: String, required: false },
+    attenuation: { type: Schema.Types.Mixed, required: false },
+    form: { type: String, required: false },
+    maxAbv: { type: Schema.Types.Mixed, required: false },
+    flocculation: { type: String, required: false },
+    temperature: { type: String, required: false },
     userId: { type: Schema.Types.ObjectId, ref: "User" },
+    creator: { type: String, required: false },
   },
   {
     timestamps: true,
