@@ -39,7 +39,6 @@ const corsOpts = {
     }
   },
 };
-passport.use("google", googleStrategy);
 
 server.use(cors(corsOpts));
 server.use(express.json());
