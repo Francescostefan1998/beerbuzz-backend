@@ -26,9 +26,22 @@ const server = express();
 const port = process.env.PORT || 3001;
 
 const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
+console.log(mongoConnectionString);
+const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL];
+
+const corsOpts = {
+  origin: (origin, corsNext) => {
+    console.log(origin);
+    if (whitelist.indexOf(origin) !== -1) {
+      corsNext(null, true);
+    } else {
+      corsNext(new Error("Not allowed by CORS"));
+    }
+  },
+};
 passport.use("google", googleStrategy);
 
-server.use(cors());
+server.use(cors(corsOpts));
 server.use(express.json());
 server.use("/users", userRouter);
 server.use("/beers", beerRouter);
