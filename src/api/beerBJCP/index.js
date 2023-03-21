@@ -15,7 +15,12 @@ beerRouter.post("/", async (req, res, next) => {
 });
 beerRouter.get("/", async (req, res, next) => {
   try {
-    const beers = await BeerModel.find();
+    const { name } = req.query;
+    const query = {};
+    if (name) {
+      query.name = new RegExp(name, "i");
+    }
+    const beers = await BeerModel.find(query).sort({ name: 1 });
     res.send(beers);
   } catch (error) {
     next(error);
