@@ -12,6 +12,7 @@ import otherRouter from "./api/others/index.js";
 import commentRouter from "./api/comments/index.js";
 import fileRecipeRouter from "./api/recipes/file/index.js";
 import imageRouter from "./api/momentaryImage/file/index.js";
+import pdfRouter from "./api/recipes/pdf/index.js";
 import {
   badRequestErrorHandler,
   notFoundErrorHandler,
@@ -39,6 +40,7 @@ const corsOpts = {
     }
   },
 };
+server.use("/pdf", pdfRouter);
 
 server.use(cors(corsOpts));
 server.use(express.json());
