@@ -13,6 +13,7 @@ const recipeSchema = new Schema(
     efficiency: { type: Schema.Types.Mixed, required: false },
     mashVolume: { type: Schema.Types.Mixed, required: false },
     preBoil: { type: Schema.Types.Mixed, required: false },
+    favourite: { type: String, required: false },
     postBoil: { type: Schema.Types.Mixed, required: false },
     abv: { type: Schema.Types.Mixed, required: false },
     ebc: { type: Schema.Types.Mixed, required: false },
