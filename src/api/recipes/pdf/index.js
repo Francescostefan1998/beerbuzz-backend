@@ -52,47 +52,58 @@ pdfRouter.get("/recipes/:recipeId/pdf", async (req, res) => {
               (malts) => malts.name + ": " + malts.amount + "kg"
             ),
           },
+          { text: "Mash", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*", 200, "*"],
               body: recipe.mash.map((mash) => [
-                mash.name,
-                mash.duration,
-                mash.temperature,
+                `${mash.name}`,
+                `${mash.duration}min`,
+                `${mash.temperature}C`,
                 mash.description,
               ]),
             },
           },
+          { text: "Boil", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*", 200, "*"],
               body: recipe.boil.map((mash) => [
                 mash.name,
-                mash.duration,
-                mash.temperature,
+                `${mash.duration}min`,
+                `${mash.temperature}C`,
                 mash.description,
               ]),
             },
           },
+          { text: "Fermentation", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*", 200, "*"],
               body: recipe.fermentation.map((mash) => [
                 mash.name,
-                mash.duration,
-                mash.temperature,
+                `${mash.duration}min`,
+                `${mash.temperature}C`,
                 mash.description,
               ]),
             },
           },
+          { text: "Chart", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*"],
-              body: recipe.chart.map((mash) => [mash.day, mash.temperature]),
+              body: recipe.chart.map((mash) => [
+                `${mash.day}day`,
+                `${mash.temperature}C`,
+              ]),
             },
           },
           { text: "Comments", style: "subheader" },
