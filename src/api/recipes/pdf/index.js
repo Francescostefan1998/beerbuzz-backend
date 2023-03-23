@@ -2,13 +2,19 @@ import express from "express";
 import pdfmake from "pdfmake";
 import PdfPrinter from "pdfmake";
 import RecipeModel from "../model.js";
-
+import fs from "fs";
+import fetch from "node-fetch";
 const pdfRouter = express.Router();
 
 pdfRouter.get("/recipes/:recipeId/pdf", async (req, res) => {
   try {
     console.log("pdf download function triggered");
     const recipe = await RecipeModel.findById(req.params.recipeId);
+    const imageUrl = recipe.image;
+    const response = await fetch(imageUrl);
+    const buffer = await response.buffer();
+    const base64Image = buffer.toString("base64");
+
     if (recipe) {
       const fonts = {
         Roboto: {
@@ -21,37 +27,49 @@ pdfRouter.get("/recipes/:recipeId/pdf", async (req, res) => {
       const docDefinition = {
         content: [
           { text: recipe.name, style: "header" },
-          { text: "Salts", style: "subheader" },
           {
-            ul: recipe.salts.map(
-              (malts) => malts.name + ": " + malts.amount + "kg"
-            ),
-          },
-          { text: "Malts", style: "subheader" },
-          {
-            ul: recipe.malts.map(
-              (malts) => malts.name + ": " + malts.amount + "kg"
-            ),
+            alignment: "justify",
+            columns: [
+              [
+                { text: "Salts", style: "subheader" },
+                {
+                  ul: recipe.salts.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
+                },
+                { text: "Malts", style: "subheader" },
+                {
+                  ul: recipe.malts.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
+                },
+
+                { text: "Hops", style: "subheader" },
+                {
+                  ul: recipe.hops.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
+                },
+                { text: "Yeasts", style: "subheader" },
+                {
+                  ul: recipe.yeasts.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
+                },
+                { text: "Others", style: "subheader" },
+                {
+                  ul: recipe.others.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
+                },
+              ],
+              {
+                image: `data:image/jpeg;base64,${base64Image}`,
+                width: 150,
+              },
+            ],
           },
 
-          { text: "Hops", style: "subheader" },
-          {
-            ul: recipe.hops.map(
-              (malts) => malts.name + ": " + malts.amount + "kg"
-            ),
-          },
-          { text: "Yeasts", style: "subheader" },
-          {
-            ul: recipe.yeasts.map(
-              (malts) => malts.name + ": " + malts.amount + "kg"
-            ),
-          },
-          { text: "Others", style: "subheader" },
-          {
-            ul: recipe.others.map(
-              (malts) => malts.name + ": " + malts.amount + "kg"
-            ),
-          },
           { text: "Mash", style: "subheader" },
 
           {
@@ -94,18 +112,18 @@ pdfRouter.get("/recipes/:recipeId/pdf", async (req, res) => {
               ]),
             },
           },
-          { text: "Chart", style: "subheader" },
 
           {
             style: "tableExample",
             table: {
               widths: [100, "*"],
               body: recipe.chart.map((mash) => [
-                `${mash.day}day`,
+                `${mash.day}`,
                 `${mash.temperature}C`,
               ]),
             },
           },
+
           { text: "Comments", style: "subheader" },
           {
             ul: recipe.comments.map(
