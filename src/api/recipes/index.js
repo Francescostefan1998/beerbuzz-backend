@@ -24,8 +24,13 @@ recipeRouter.get("/", async (req, res, next) => {
 });
 recipeRouter.get("/:userId", async (req, res, next) => {
   try {
+    const { name } = req.query;
     const userId = req.params.userId;
-    const recipes = await RecipeModel.find({ userId: userId });
+    const query = { userId: userId };
+    if (name) {
+      query.name = new RegExp(name, "i");
+    }
+    const recipes = await RecipeModel.find(query);
     res.send(recipes);
   } catch (error) {
     next(error);
