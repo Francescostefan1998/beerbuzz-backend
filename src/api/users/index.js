@@ -35,9 +35,11 @@ userRouter.get(
   passport.authenticate("google", { session: false }),
   async (req, res, next) => {
     console.log(req.user);
-    //res.send({ accessToken: req.user.accessToken });
+    console.log(req.user.id);
+
+    // res.send({ accessToken: req.user.accessToken });
     res.redirect(
-      `${process.env.FE_PROD_URL}?accessToken=${req.user.accessToken}`
+      `https://beerbuzz-frontend.vercel.app/home?accessToken=${req.user.accessToken}&&userId=${req.user.id}`
     );
   }
 );

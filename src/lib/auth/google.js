@@ -6,7 +6,7 @@ const googleStrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: `${process.env.BE_URL}/users/googleRedirect`,
+    callbackURL: `https://beerbuzz-backend-production.up.railway.app/users/googleRedirect`,
   },
   async (accesstoken, refreshtoken, profile, passportNext) => {
     console.log(profile);
@@ -18,7 +18,9 @@ const googleStrategy = new GoogleStrategy(
           _id: user._id,
           role: user.role,
         });
-        passportNext(null, { accessToken });
+        const id = await user._id;
+
+        passportNext(null, { accessToken, id });
       } else {
         const newUser = new UserModel({
           firstName: given_name,
@@ -27,12 +29,12 @@ const googleStrategy = new GoogleStrategy(
           googleId: profile.id,
         });
         const createdUser = await newUser.save();
-
+        const id = await createdUser._id;
         const accessToken = await createAccessToken({
           _id: createdUser._id,
           role: createdUser.role,
         });
-        passportNext(null, { accessToken });
+        passportNext(null, { accessToken, id });
       }
     } catch (error) {
       console.log(error);
