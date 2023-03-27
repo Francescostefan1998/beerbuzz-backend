@@ -19,13 +19,13 @@ import {
   genericErrorHandler,
   unauthorizedErrorHandler,
 } from "./errorHandlers.js";
-//import googleStrategy from "./lib/auth/google.js";
-//import passport from "passport";
+import googleStrategy from "./lib/auth/google.js";
+import passport from "passport";
 
 const server = express();
 
 const port = process.env.PORT || 3001;
-
+passport.use("google", googleStrategy);
 const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
 console.log(mongoConnectionString);
 const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL];
@@ -44,6 +44,7 @@ server.use("/pdf", pdfRouter);
 
 server.use(cors(corsOpts));
 server.use(express.json());
+server.use(passport.initialize());
 server.use("/users", userRouter);
 server.use("/beers", beerRouter);
 server.use("/malts", maltRouter);
