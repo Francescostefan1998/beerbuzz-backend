@@ -15,6 +15,7 @@ const yeastSchema = new Schema(
     temperature: { type: String, required: false },
     userId: { type: Schema.Types.ObjectId, ref: "User" },
     creator: { type: String, required: false },
+    pubblic: { type: String, required: false },
   },
   {
     timestamps: true,

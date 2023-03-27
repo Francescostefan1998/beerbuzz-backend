@@ -14,6 +14,7 @@ const maltSchema = new Schema(
     potential: { type: Schema.Types.Mixed, required: false },
     yield: { type: Schema.Types.Mixed, required: false },
     userId: { type: Schema.Types.ObjectId, ref: "User" },
+    pubblic: { type: String, required: false },
   },
   {
     timestamps: true,

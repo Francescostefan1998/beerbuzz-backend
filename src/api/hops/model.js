@@ -9,6 +9,7 @@ const hopSchema = new Schema(
     origin: { type: String, required: false },
     userId: { type: Schema.Types.ObjectId, ref: "User" },
     creator: { type: String, required: false },
+    pubblic: { type: String, required: false },
   },
   {
     timestamps: true,
