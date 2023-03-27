@@ -42,7 +42,7 @@ const corsOpts = {
 };
 server.use("/pdf", pdfRouter);
 
-server.use(cors(corsOpts));
+server.use(cors());
 server.use(express.json());
 server.use(passport.initialize());
 server.use("/users", userRouter);
