@@ -26,50 +26,41 @@ pdfRouter.get("/recipes/:recipeId/pdf", async (req, res) => {
       };
       const docDefinition = {
         content: [
-          { text: recipe.name ? recipe.name : "", style: "header" },
+          { text: recipe.name, style: "header" },
           {
             alignment: "justify",
             columns: [
               [
                 { text: "Salts", style: "subheader" },
                 {
-                  ul: recipe.salts
-                    ? recipe.salts.map(
-                        (malts) => malts.name + ": " + malts.amount + "kg"
-                      )
-                    : "",
+                  ul: recipe.salts.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
                 },
                 { text: "Malts", style: "subheader" },
                 {
-                  ul: recipe.malts
-                    ? recipe.malts.map(
-                        (malts) => malts.name + ": " + malts.amount + "kg"
-                      )
-                    : "",
+                  ul: recipe.malts.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
                 },
+
                 { text: "Hops", style: "subheader" },
                 {
-                  ul: recipe.hops
-                    ? recipe.hops.map(
-                        (malts) => malts.name + ": " + malts.amount + "kg"
-                      )
-                    : "",
+                  ul: recipe.hops.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
                 },
                 { text: "Yeasts", style: "subheader" },
                 {
-                  ul: recipe.yeasts
-                    ? recipe.yeasts.map(
-                        (malts) => malts.name + ": " + malts.amount + "kg"
-                      )
-                    : "",
+                  ul: recipe.yeasts.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
                 },
                 { text: "Others", style: "subheader" },
                 {
-                  ul: recipe.others
-                    ? recipe.others.map(
-                        (malts) => malts.name + ": " + malts.amount + "kg"
-                      )
-                    : "",
+                  ul: recipe.others.map(
+                    (malts) => malts.name + ": " + malts.amount + "kg"
+                  ),
                 },
               ],
               {
@@ -78,70 +69,66 @@ pdfRouter.get("/recipes/:recipeId/pdf", async (req, res) => {
               },
             ],
           },
+
           { text: "Mash", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*", 200, "*"],
-              body: recipe.mash
-                ? recipe.mash.map((mash) => [
-                    `${mash.name}`,
-                    `${mash.duration}min`,
-                    `${mash.temperature}C`,
-                    mash.description ? mash.description : "",
-                  ])
-                : "",
+              body: recipe.mash.map((mash) => [
+                `${mash.name}`,
+                `${mash.duration}min`,
+                `${mash.temperature}C`,
+                mash.description,
+              ]),
             },
           },
           { text: "Boil", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*", 200, "*"],
-              body: recipe.boil
-                ? recipe.boil.map((mash) => [
-                    mash.name,
-                    `${mash.duration}min`,
-                    `${mash.temperature}C`,
-                    mash.description ? mash.description : "",
-                  ])
-                : "",
+              body: recipe.boil.map((mash) => [
+                mash.name,
+                `${mash.duration}min`,
+                `${mash.temperature}C`,
+                mash.description,
+              ]),
             },
           },
           { text: "Fermentation", style: "subheader" },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*", 200, "*"],
-              body: recipe.fermentation
-                ? recipe.fermentation.map((mash) => [
-                    mash.name,
-                    `${mash.duration}min`,
-                    `${mash.temperature}C`,
-                    mash.description ? mash.description : "",
-                  ])
-                : "",
+              body: recipe.fermentation.map((mash) => [
+                mash.name,
+                `${mash.duration}min`,
+                `${mash.temperature}C`,
+                mash.description,
+              ]),
             },
           },
+
           {
             style: "tableExample",
             table: {
               widths: [100, "*"],
-              body: recipe.chart
-                ? recipe.chart.map((mash) => [
-                    `${mash.day}`,
-                    `${mash.temperature}C`,
-                  ])
-                : "",
+              body: recipe.chart.map((mash) => [
+                `${mash.day}`,
+                `${mash.temperature}C`,
+              ]),
             },
           },
+
           { text: "Comments", style: "subheader" },
           {
-            ul: recipe.comments
-              ? recipe.comments.map(
-                  (malts) => malts.name + ": " + malts.comment
-                )
-              : "",
+            ul: recipe.comments.map(
+              (malts) => malts.name + ": " + malts.comment
+            ),
           },
         ],
         styles: {
